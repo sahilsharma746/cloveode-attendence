@@ -121,7 +121,7 @@ include __DIR__ . '/includes/header.php';
                         <p class="time-label">Check In Time</p>
                         <?php if ($todaysAttendance && $todaysAttendance['status'] === 'late' && isset($todaysAttendance['late_minutes']) && $todaysAttendance['late_minutes']): ?>
                             <p class="late-warning" style="color: #ef4444; font-size: 14px; font-weight: 600; margin-top: 8px;">
-                                 You are late by <?php echo $todaysAttendance['late_minutes']; ?> minutes
+                                 You are late by <?php echo formatLateTime($todaysAttendance['late_minutes']); ?>
                             </p>
                         <?php endif; ?>
                     </div>

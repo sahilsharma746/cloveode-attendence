@@ -547,7 +547,7 @@ include __DIR__ . '/includes/header.php';
                                             <td>
                                                 <?php if ($record['status'] === 'late' && isset($record['late_minutes']) && $record['late_minutes']): ?>
                                                     <span class="text-sm" style="color: #ef4444; font-weight: 600;">
-                                                        <?php echo $record['late_minutes']; ?> minutes
+                                                        <?php echo formatLateTime($record['late_minutes']); ?>
                                                     </span>
                                                 <?php else: ?>
                                                     <span class="text-sm text-muted">-</span>
@@ -848,7 +848,7 @@ include __DIR__ . '/includes/header.php';
                                             </td>
                                             <td>
                                                 <span style="color: #ef4444; font-weight: 600;">
-                                                    <?php echo isset($record['late_minutes']) ? $record['late_minutes'] : 0; ?> minutes
+                                                    <?php echo formatLateTime(isset($record['late_minutes']) ? $record['late_minutes'] : 0); ?>
                                                 </span>
                                             </td>
                                         </tr>

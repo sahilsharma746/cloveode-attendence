@@ -22,4 +22,25 @@ function getUserAvatar($user, $size = 'medium') {
                     border: 2px solid #e2e8f0;">' . htmlspecialchars($initial) . '</div>';
     }
 }
+
+function formatLateTime($minutes) {
+    if ($minutes <= 0) {
+        return '0 minutes';
+    }
+    
+    $hours = floor($minutes / 60);
+    $remainingMinutes = $minutes % 60;
+    
+    $parts = [];
+    
+    if ($hours > 0) {
+        $parts[] = $hours . ($hours === 1 ? ' hour' : ' hours');
+    }
+    
+    if ($remainingMinutes > 0) {
+        $parts[] = $remainingMinutes . ($remainingMinutes === 1 ? ' minute' : ' minutes');
+    }
+    
+    return implode(' ', $parts);
+}
 ?>

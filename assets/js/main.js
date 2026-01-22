@@ -182,7 +182,7 @@ function switchTab(tabName) {
     document.getElementById('tab' + tabName.charAt(0).toUpperCase() + tabName.slice(1)).classList.add('active');
 }
 
-// Theme Management
+
 function initTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
@@ -208,7 +208,7 @@ function updateThemeToggle(theme) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize theme
+    
     initTheme();
     
     const checkInBtn = document.getElementById('checkInBtn');
