@@ -41,7 +41,7 @@ include __DIR__ . '/includes/header.php';
                         <?php foreach ($allUsers as $teamMember): ?>
                             <div class="organization-card">
                                 <div class="org-member-avatar">
-                                    <?php echo getUserAvatar($teamMember, 'large'); ?>
+                                    <?php echo getUserAvatar($teamMember, 'org'); ?>
                                 </div>
                                 <div class="org-member-info">
                                     <h3 class="org-member-name"><?php echo htmlspecialchars($teamMember['full_name']); ?></h3>
@@ -70,16 +70,16 @@ include __DIR__ . '/includes/header.php';
 <style>
 .organization-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    padding: 8px 0;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 4px 0;
 }
 
 .organization-card {
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
+    border-radius: 12px;
+    padding: 16px;
     text-align: center;
     transition: all 0.3s;
     display: flex;
@@ -89,12 +89,12 @@ include __DIR__ . '/includes/header.php';
 
 .organization-card:hover {
     box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     border-color: var(--primary);
 }
 
 .org-member-avatar {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,17 +105,17 @@ include __DIR__ . '/includes/header.php';
 }
 
 .org-member-name {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 600;
     color: var(--text);
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
 }
 
 .org-member-title {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-muted);
-    margin: 0 0 4px 0;
-    font-weight: 500;
+    margin: 0 0 8px 0;
+    font-weight: 400;
 }
 
 .org-member-username {
@@ -133,12 +133,16 @@ include __DIR__ . '/includes/header.php';
 
 @media (max-width: 768px) {
     .organization-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        gap: 16px;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
     }
     
     .organization-card {
-        padding: 20px;
+        padding: 14px;
+    }
+    
+    .org-member-name {
+        font-size: 15px;
     }
 }
 </style>

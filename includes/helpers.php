@@ -3,6 +3,7 @@ function getUserAvatar($user, $size = 'medium') {
     $sizeClasses = [
         'small' => ['size' => '40px', 'font' => '16px'],
         'medium' => ['size' => '48px', 'font' => '18px'],
+        'org' => ['size' => '80px', 'font' => '32px'],
         'large' => ['size' => '250px', 'font' => '200px']
     ];
     
