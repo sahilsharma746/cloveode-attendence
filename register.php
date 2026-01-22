@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullName = trim($_POST['full_name'] ?? '');
     $title = trim($_POST['title'] ?? '');
     
-    // Handle profile picture upload
     $profilePicture = null;
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
         $profilePicture = $auth->handleProfilePictureUpload($_FILES['profile_picture']);

@@ -1299,7 +1299,18 @@ document.getElementById('createUserForm').addEventListener('submit', async funct
 });
 
 async function updateLeaveStatus(leaveId, status) {
-    if (!confirm(`Are you sure you want to ${status} this leave request?`)) {
+    const result = await Swal.fire({
+        title: 'Are you sure?',
+        text: `Are you sure you want to ${status} this leave request?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: status === 'approved' ? '#10b981' : '#ef4444',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: `Yes, ${status} it!`,
+        cancelButtonText: 'Cancel'
+    });
+    
+    if (!result.isConfirmed) {
         return;
     }
     
@@ -1312,15 +1323,31 @@ async function updateLeaveStatus(leaveId, status) {
             body: JSON.stringify({ status: status })
         });
         
-        const result = await response.json();
+        const data = await response.json();
         
         if (response.ok) {
+            await Swal.fire({
+                title: 'Success!',
+                text: `Leave request has been ${status} successfully.`,
+                icon: 'success',
+                confirmButtonColor: '#10b981'
+            });
             location.reload();
         } else {
-            alert(result.message || 'Failed to update leave status');
+            await Swal.fire({
+                title: 'Error!',
+                text: data.message || 'Failed to update leave status',
+                icon: 'error',
+                confirmButtonColor: '#ef4444'
+            });
         }
     } catch (error) {
-        alert('An error occurred. Please try again.');
+        await Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred. Please try again.',
+            icon: 'error',
+            confirmButtonColor: '#ef4444'
+        });
     }
 }
 

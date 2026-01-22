@@ -133,7 +133,18 @@ async function submitLeaveRequest(e) {
 }
 
 async function updateLeaveStatus(leaveId, status) {
-    if (!confirm(`Are you sure you want to ${status} this leave request?`)) {
+    const result = await Swal.fire({
+        title: '',
+        text: `${status} this leave request?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: status === 'approved' ? '#10b981' : '#ef4444',
+        cancelButtonColor: '#6b7280',
+        confirmButtonText: `Yes`,
+        cancelButtonText: 'Cancel'
+    });
+    
+    if (!result.isConfirmed) {
         return;
     }
     
@@ -142,9 +153,20 @@ async function updateLeaveStatus(leaveId, status) {
             method: 'POST',
             body: JSON.stringify({ status }),
         });
+        await Swal.fire({
+            title: 'Success!',
+            text: `Leave request has been ${status}.`,
+            icon: 'success',
+            confirmButtonColor: '#10b981'
+        });
         location.reload();
     } catch (error) {
-        alert(error.message || 'Error updating leave status. Please try again.');
+        await Swal.fire({
+            title: 'Error!',
+            text: error.message || 'Error updating leave status. Please try again.',
+            icon: 'error',
+            confirmButtonColor: '#ef4444'
+        });
     }
 }
 
